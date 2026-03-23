@@ -1,0 +1,133 @@
+"use client";
+
+import { useEffect, useRef } from "react";
+import { gsap } from "@/lib/gsap-config";
+import { contactContent, siteConfig } from "@/data/content";
+import SectionLabel from "@/components/ui/SectionLabel";
+
+export default function Contact() {
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    if (!sectionRef.current) return;
+    gsap.from(sectionRef.current.querySelectorAll(".reveal-up"), {
+      y: 60,
+      opacity: 0,
+      duration: 1,
+      ease: "power3.out",
+      stagger: 0.12,
+      scrollTrigger: {
+        trigger: sectionRef.current,
+        start: "top 70%",
+        toggleActions: "play none none none",
+      },
+    });
+  }, []);
+
+  return (
+    <section
+      id="contact"
+      ref={sectionRef}
+      className="section-padding"
+      style={{ backgroundColor: "var(--color-bg-primary)" }}
+    >
+      <div className="container">
+        <SectionLabel
+          number={contactContent.number}
+          label={contactContent.label}
+        />
+
+        <div className="max-w-3xl">
+          <h2 className="text-display reveal-up">
+            {contactContent.headline.map((line, i) => (
+              <span key={i} className="block">
+                {line}
+              </span>
+            ))}
+          </h2>
+
+          <a
+            href={`mailto:${contactContent.email}`}
+            className="inline-block mt-12 reveal-up"
+            style={{
+              fontFamily: "var(--font-mono)",
+              fontSize: "clamp(1.25rem, 2.5vw, 2rem)",
+              color: "var(--color-accent)",
+              textDecoration: "none",
+              letterSpacing: "0.02em",
+              transition: "letter-spacing 0.4s cubic-bezier(0.16, 1, 0.3, 1)",
+            }}
+            onMouseEnter={(e) => {
+              (e.target as HTMLElement).style.letterSpacing = "0.15em";
+            }}
+            onMouseLeave={(e) => {
+              (e.target as HTMLElement).style.letterSpacing = "0.02em";
+            }}
+          >
+            {contactContent.email}
+          </a>
+
+          <div className="flex gap-4 mt-10 reveal-up">
+            {contactContent.socials.map((social) => (
+              <a
+                key={social.label}
+                href={social.url}
+                className="flex items-center justify-center transition-all duration-300"
+                style={{
+                  width: 48,
+                  height: 48,
+                  backgroundColor: "var(--color-bg-surface)",
+                  border: "1px solid var(--color-border)",
+                  borderRadius: "0.5rem",
+                  color: "var(--color-text-secondary)",
+                  textDecoration: "none",
+                  fontFamily: "var(--font-mono)",
+                  fontSize: "0.7rem",
+                  letterSpacing: "0.05em",
+                }}
+                onMouseEnter={(e) => {
+                  const el = e.currentTarget;
+                  el.style.borderColor = "var(--color-accent)";
+                  el.style.transform = "scale(1.05)";
+                }}
+                onMouseLeave={(e) => {
+                  const el = e.currentTarget;
+                  el.style.borderColor = "var(--color-border)";
+                  el.style.transform = "scale(1)";
+                }}
+              >
+                {social.label.slice(0, 2).toUpperCase()}
+              </a>
+            ))}
+          </div>
+        </div>
+
+        {/* Footer */}
+        <div
+          className="mt-24 pt-8 flex items-center justify-between reveal-up"
+          style={{ borderTop: "1px solid var(--color-border)" }}
+        >
+          <span
+            className="text-micro"
+            style={{
+              fontFamily: "var(--font-mono)",
+              color: "var(--color-text-tertiary)",
+              letterSpacing: "0.2em",
+            }}
+          >
+            {siteConfig.name}
+          </span>
+          <span
+            className="text-micro"
+            style={{
+              fontFamily: "var(--font-mono)",
+              color: "var(--color-text-tertiary)",
+            }}
+          >
+            © 2026
+          </span>
+        </div>
+      </div>
+    </section>
+  );
+}
