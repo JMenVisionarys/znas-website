@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import { gsap, ScrollTrigger } from "@/lib/gsap-config";
-import { aboutIntroContent } from "@/data/content";
+import { aboutContent } from "@/data/content";
 
 export default function AboutIntro() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -48,7 +48,7 @@ export default function AboutIntro() {
             maxWidth: "1000px",
           }}
         >
-          {aboutIntroContent.statement}
+          {aboutContent.statement}
         </p>
       </div>
     </section>
