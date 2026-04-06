@@ -50,22 +50,22 @@ export default function CustomCursor() {
 
     // Smooth cursor following (ring)
     const xTo = gsap.quickTo(cursor, "left", {
-      duration: 0.4,
-      ease: "power3.out",
+      duration: 0.15,
+      ease: "power2.out",
     });
     const yTo = gsap.quickTo(cursor, "top", {
-      duration: 0.4,
-      ease: "power3.out",
+      duration: 0.15,
+      ease: "power2.out",
     });
 
-    // Tooltip follows slower for layered feel
+    // Tooltip follows slightly slower for layered feel
     const txTo = gsap.quickTo(tooltip, "left", {
-      duration: 0.7,
-      ease: "power3.out",
+      duration: 0.3,
+      ease: "power2.out",
     });
     const tyTo = gsap.quickTo(tooltip, "top", {
-      duration: 0.7,
-      ease: "power3.out",
+      duration: 0.3,
+      ease: "power2.out",
     });
 
     const handleMove = (e: MouseEvent) => {
