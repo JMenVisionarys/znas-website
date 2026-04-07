@@ -122,7 +122,7 @@ export default function Contact() {
               src="/logo.png"
               alt=""
               className="logo-img"
-              style={{ height: "48px", width: "auto", opacity: 0.9 }}
+              style={{ height: "48px", width: "auto", opacity: 0.9, objectFit: "contain", flexShrink: 0 }}
             />
             <span
               style={{
