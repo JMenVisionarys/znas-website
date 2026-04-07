@@ -27,7 +27,7 @@ export default function Preloader({ onComplete }: PreloaderProps) {
     // Fallback: force-complete if rAF is throttled (background tabs, headless)
     const fallback = setTimeout(() => {
       tl.progress(1, false);
-    }, 3500);
+    }, 2200);
 
     const tl = gsap.timeline({
       onComplete: () => {
@@ -54,14 +54,14 @@ export default function Preloader({ onComplete }: PreloaderProps) {
       // Bar loads beneath the logo
       .to(lineRef.current, {
         width: "40%",
-        duration: 1.6,
+        duration: 0.9,
         ease: "power2.inOut",
       }, "-=0.2")
       .to(
         counter,
         {
           value: 100,
-          duration: 1.6,
+          duration: 0.9,
           ease: "power2.inOut",
           onUpdate: () => {
             if (counterRef.current) {
@@ -84,14 +84,14 @@ export default function Preloader({ onComplete }: PreloaderProps) {
       )
       .to(topRef.current, {
         yPercent: -100,
-        duration: 0.8,
+        duration: 0.5,
         ease: "power3.inOut",
       }, "-=0.1")
       .to(
         bottomRef.current,
         {
           yPercent: 100,
-          duration: 0.8,
+          duration: 0.5,
           ease: "power3.inOut",
         },
         "<"

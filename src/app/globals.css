@@ -98,6 +98,17 @@ body {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+/* ── Focus States (Accessibility) ── */
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
 @media (pointer: fine) {
   html, body {
     cursor: none;

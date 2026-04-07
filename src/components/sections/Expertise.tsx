@@ -266,7 +266,7 @@ export default function Expertise() {
               </h3>
               <p
                 className="text-small"
-                style={{ color: "var(--color-text-tertiary)" }}
+                style={{ color: "var(--color-text-secondary)" }}
               >
                 {pillar.description}
               </p>

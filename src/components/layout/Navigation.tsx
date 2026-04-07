@@ -315,6 +315,7 @@ export default function Navigation({ visible }: NavigationProps) {
             className="md:hidden flex flex-col gap-1.5 p-2"
             onClick={() => setMobileOpen(!mobileOpen)}
             aria-label="Toggle menu"
+            aria-expanded={mobileOpen}
           >
             <span
               className="block w-5 h-px transition-transform duration-300"

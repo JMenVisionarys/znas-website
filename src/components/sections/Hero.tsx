@@ -367,11 +367,42 @@ export default function Hero({ preloaderDone }: HeroProps) {
 
         <div
           ref={ctaRef}
-          className="mt-10 flex items-center gap-3"
-          style={{ color: "var(--color-text-tertiary)" }}
+          className="mt-10 flex items-center gap-6"
         >
-          <span className="text-micro">{heroContent.scrollCta}</span>
-          <span className="animate-bounce text-sm">↓</span>
+          <a
+            href="#contact"
+            onClick={(e) => {
+              e.preventDefault();
+              document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" });
+            }}
+            style={{
+              fontFamily: "var(--font-mono)",
+              fontSize: "0.75rem",
+              letterSpacing: "0.08em",
+              textTransform: "uppercase" as const,
+              color: "var(--color-accent)",
+              border: "1px solid var(--color-accent)",
+              borderRadius: "2px",
+              padding: "0.6rem 1.4rem",
+              textDecoration: "none",
+              transition: "all 0.3s ease",
+              cursor: "none",
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.backgroundColor = "var(--color-accent)";
+              e.currentTarget.style.color = "var(--color-bg-void)";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.backgroundColor = "transparent";
+              e.currentTarget.style.color = "var(--color-accent)";
+            }}
+          >
+            Start a project →
+          </a>
+          <span className="flex items-center gap-3" style={{ color: "var(--color-text-tertiary)" }}>
+            <span className="text-micro">{heroContent.scrollCta}</span>
+            <span className="animate-bounce text-sm">↓</span>
+          </span>
         </div>
       </div>
     </section>

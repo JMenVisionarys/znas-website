@@ -17,8 +17,7 @@ export function useLenis() {
     if (isMobile || prefersReducedMotion) return;
 
     const lenis = new Lenis({
-      lerp: 0.1,
-      duration: 1.2,
+      lerp: 0.08,
       smoothWheel: true,
     });
 
@@ -26,13 +25,14 @@ export function useLenis() {
 
     lenis.on("scroll", ScrollTrigger.update);
 
-    gsap.ticker.add((time) => {
+    const lenisRaf = (time: number) => {
       lenis.raf(time * 1000);
-    });
-
+    };
+    gsap.ticker.add(lenisRaf);
     gsap.ticker.lagSmoothing(0);
 
     return () => {
+      gsap.ticker.remove(lenisRaf);
       lenis.destroy();
       lenisRef.current = null;
     };

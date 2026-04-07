@@ -1,8 +1,8 @@
 export const siteConfig = {
   name: "ZNAS",
-  title: "ZNAS — Software Engineering & Consulting",
+  title: "Jose Sanz — Software Architect & Consultant | ZNAS",
   description:
-    "Full-stack software engineering and consulting. Helping organizations build scalable software across healthcare, airlines, finance, and telecom.",
+    "Jose Sanz is a Software Architect with 17 years building distributed systems across healthcare, airlines, finance, and telecom. MIT-certified in AI Strategy. Founder of Znas LLC. Based in Tucson, AZ.",
   url: "https://znas.io",
 };
 
@@ -183,7 +183,7 @@ export const workContent = {
 
 export const testimonialsContent = {
   number: ".05",
-  label: "Words",
+  label: "Testimonials",
   quotes: [
     {
       text: "Jose is an extremely competent AI developer. In a very short time, he put together architectural documentation, determined which components each team member could take on and quickly delegated work. After development was complete, he also jumped into presenting to a group of software developers as part of the AI Trailblazers developer workshop series.",
@@ -227,5 +227,6 @@ export const navLinks = [
   { label: "Expertise", href: "#expertise" },
   { label: "Journey", href: "#journey" },
   { label: "Work", href: "#work" },
+  { label: "Testimonials", href: "#testimonials" },
   { label: "Contact", href: "#contact" },
 ];
