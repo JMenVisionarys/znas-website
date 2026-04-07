@@ -352,7 +352,7 @@ const ThemeContext = createContext<ThemeContextValue>({
   cycle: () => {},
 });
 
-const CYCLE: ThemeMode[] = ["system", "dark", "light", "blackout"];
+const CYCLE: ThemeMode[] = ["dark", "light", "blackout"];
 const STORAGE_KEY = "znas-theme";
 const ACCENT_KEY = "znas-accent";
 
@@ -413,7 +413,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     const stored = localStorage.getItem(STORAGE_KEY) as ThemeMode | null;
     const storedAccent = localStorage.getItem(ACCENT_KEY) as AccentColor | null;
 
-    const m = stored && CYCLE.includes(stored) ? stored : "system";
+    const m = stored && CYCLE.includes(stored) ? stored : "dark";
     const a = storedAccent && ACCENT_COLORS.some((c) => c.id === storedAccent)
       ? storedAccent
       : "blue";
