@@ -13,47 +13,192 @@ type ResolvedTheme = "light" | "dark" | "blackout";
 
 export type AccentColor = "blue" | "gold" | "emerald" | "silver" | "copper";
 
+interface FullPalette {
+  accent: string;
+  glow: string;
+  hover: string;
+  bgVoid: string;
+  bgPrimary: string;
+  bgElevated: string;
+  bgSurface: string;
+  textSecondary: string;
+  textTertiary: string;
+  textGhost: string;
+  border: string;
+  borderHover: string;
+}
+
 export const ACCENT_COLORS: {
   id: AccentColor;
   label: string;
   swatch: string;
-  dark: { accent: string; glow: string; hover: string };
-  light: { accent: string; glow: string; hover: string };
+  dark: FullPalette;
+  light: FullPalette;
 }[] = [
   {
     id: "blue",
     label: "Electric",
     swatch: "#4F9CF7",
-    dark: { accent: "#4F9CF7", glow: "#4F9CF720", hover: "#6BB0FF" },
-    light: { accent: "#2E7BD6", glow: "#2E7BD620", hover: "#1A65BE" },
+    dark: {
+      accent: "#4F9CF7",
+      glow: "#4F9CF720",
+      hover: "#6BB0FF",
+      bgVoid: "#050508",
+      bgPrimary: "#0A0D14",
+      bgElevated: "#111621",
+      bgSurface: "#1A1F2E",
+      textSecondary: "#9CA3B4",
+      textTertiary: "#5A6278",
+      textGhost: "#2A3040",
+      border: "#1E2433",
+      borderHover: "#2E3548",
+    },
+    light: {
+      accent: "#2E7BD6",
+      glow: "#2E7BD620",
+      hover: "#1A65BE",
+      bgVoid: "#F5F5F7",
+      bgPrimary: "#FAFAFA",
+      bgElevated: "#FFFFFF",
+      bgSurface: "#EEEEF0",
+      textSecondary: "#4A4A52",
+      textTertiary: "#7A7A85",
+      textGhost: "#C8C8D0",
+      border: "#E0E0E5",
+      borderHover: "#D0D0D8",
+    },
   },
   {
     id: "gold",
     label: "Amber",
     swatch: "#D4A853",
-    dark: { accent: "#D4A853", glow: "#D4A85320", hover: "#E0BC6A" },
-    light: { accent: "#B8902F", glow: "#B8902F20", hover: "#9A7820" },
+    dark: {
+      accent: "#D4A853",
+      glow: "#D4A85320",
+      hover: "#E0BC6A",
+      bgVoid: "#08060A",
+      bgPrimary: "#100C08",
+      bgElevated: "#1A1510",
+      bgSurface: "#2A2218",
+      textSecondary: "#B4A893",
+      textTertiary: "#78685A",
+      textGhost: "#3A3028",
+      border: "#2E2518",
+      borderHover: "#453828",
+    },
+    light: {
+      accent: "#B8902F",
+      glow: "#B8902F20",
+      hover: "#9A7820",
+      bgVoid: "#FAF7F2",
+      bgPrimary: "#FDFBF7",
+      bgElevated: "#FFFFFF",
+      bgSurface: "#F0EBE2",
+      textSecondary: "#5A5040",
+      textTertiary: "#8A7D68",
+      textGhost: "#D8D0C0",
+      border: "#E8E0D0",
+      borderHover: "#D8CDB8",
+    },
   },
   {
     id: "emerald",
     label: "Emerald",
     swatch: "#34D399",
-    dark: { accent: "#34D399", glow: "#34D39920", hover: "#5EEAD4" },
-    light: { accent: "#059669", glow: "#05966920", hover: "#047857" },
+    dark: {
+      accent: "#34D399",
+      glow: "#34D39920",
+      hover: "#5EEAD4",
+      bgVoid: "#040808",
+      bgPrimary: "#081210",
+      bgElevated: "#0E1A18",
+      bgSurface: "#162824",
+      textSecondary: "#8CB4A8",
+      textTertiary: "#4A7868",
+      textGhost: "#1E3830",
+      border: "#1A2E28",
+      borderHover: "#28443C",
+    },
+    light: {
+      accent: "#059669",
+      glow: "#05966920",
+      hover: "#047857",
+      bgVoid: "#F2FAF7",
+      bgPrimary: "#F7FDFA",
+      bgElevated: "#FFFFFF",
+      bgSurface: "#E5F0EB",
+      textSecondary: "#3A5A4A",
+      textTertiary: "#688A78",
+      textGhost: "#C0D8CC",
+      border: "#D0E5DA",
+      borderHover: "#B8D5C5",
+    },
   },
   {
     id: "silver",
     label: "Silver",
     swatch: "#C8CCD4",
-    dark: { accent: "#C8CCD4", glow: "#C8CCD420", hover: "#E2E5EA" },
-    light: { accent: "#64748B", glow: "#64748B20", hover: "#475569" },
+    dark: {
+      accent: "#C8CCD4",
+      glow: "#C8CCD420",
+      hover: "#E2E5EA",
+      bgVoid: "#070708",
+      bgPrimary: "#0E0E10",
+      bgElevated: "#161618",
+      bgSurface: "#1E1E22",
+      textSecondary: "#A0A0A8",
+      textTertiary: "#606068",
+      textGhost: "#2C2C32",
+      border: "#222228",
+      borderHover: "#32323A",
+    },
+    light: {
+      accent: "#64748B",
+      glow: "#64748B20",
+      hover: "#475569",
+      bgVoid: "#F7F7F8",
+      bgPrimary: "#FBFBFC",
+      bgElevated: "#FFFFFF",
+      bgSurface: "#EDEDF0",
+      textSecondary: "#4A4A55",
+      textTertiary: "#7A7A88",
+      textGhost: "#CCCCD2",
+      border: "#E2E2E8",
+      borderHover: "#D2D2DA",
+    },
   },
   {
     id: "copper",
     label: "Copper",
     swatch: "#D97B4A",
-    dark: { accent: "#D97B4A", glow: "#D97B4A20", hover: "#E8956A" },
-    light: { accent: "#B85C2F", glow: "#B85C2F20", hover: "#9A4A22" },
+    dark: {
+      accent: "#D97B4A",
+      glow: "#D97B4A20",
+      hover: "#E8956A",
+      bgVoid: "#0A0605",
+      bgPrimary: "#120C08",
+      bgElevated: "#1C1410",
+      bgSurface: "#2C2018",
+      textSecondary: "#B49880",
+      textTertiary: "#786050",
+      textGhost: "#3A2C22",
+      border: "#302218",
+      borderHover: "#483828",
+    },
+    light: {
+      accent: "#B85C2F",
+      glow: "#B85C2F20",
+      hover: "#9A4A22",
+      bgVoid: "#FBF7F4",
+      bgPrimary: "#FDFAF7",
+      bgElevated: "#FFFFFF",
+      bgSurface: "#F2EBE5",
+      textSecondary: "#5A4838",
+      textTertiary: "#8A7060",
+      textGhost: "#D8CCC0",
+      border: "#EAE0D5",
+      borderHover: "#DAC8B8",
+    },
   },
 ];
 
@@ -95,9 +240,26 @@ function applyAccent(accentId: AccentColor, resolvedTheme: ResolvedTheme) {
   const config = ACCENT_COLORS.find((a) => a.id === accentId) ?? ACCENT_COLORS[0];
   const palette = resolvedTheme === "light" ? config.light : config.dark;
   const root = document.documentElement;
+
+  // Accent colors
   root.style.setProperty("--color-accent", palette.accent);
   root.style.setProperty("--color-accent-glow", palette.glow);
   root.style.setProperty("--color-accent-hover", palette.hover);
+
+  // Background colors
+  root.style.setProperty("--color-bg-void", palette.bgVoid);
+  root.style.setProperty("--color-bg-primary", palette.bgPrimary);
+  root.style.setProperty("--color-bg-elevated", palette.bgElevated);
+  root.style.setProperty("--color-bg-surface", palette.bgSurface);
+
+  // Text colors (secondary/tertiary — primary stays white/black)
+  root.style.setProperty("--color-text-secondary", palette.textSecondary);
+  root.style.setProperty("--color-text-tertiary", palette.textTertiary);
+  root.style.setProperty("--color-text-ghost", palette.textGhost);
+
+  // Border colors
+  root.style.setProperty("--color-border", palette.border);
+  root.style.setProperty("--color-border-hover", palette.borderHover);
 }
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
