@@ -240,7 +240,13 @@ export default function Navigation({ visible }: NavigationProps) {
             {/* Theme Toggle */}
             <button
               onClick={cycle}
-              aria-label={`Switch to ${resolved === "dark" ? "light" : "dark"} mode`}
+              aria-label={
+                resolved === "light"
+                  ? "Switch to blackout mode"
+                  : resolved === "blackout"
+                  ? "Switch to system mode"
+                  : "Switch to light mode"
+              }
               style={{
                 fontFamily: "var(--font-mono)",
                 fontSize: "0.7rem",
@@ -262,7 +268,7 @@ export default function Navigation({ visible }: NavigationProps) {
                 e.currentTarget.style.borderColor = "var(--color-border)";
               }}
             >
-              {resolved === "dark" ? "☀" : "☾"}
+              {resolved === "light" ? "☾" : resolved === "blackout" ? "●" : "☀"}
             </button>
 
             {/* Accent Color Picker */}
@@ -380,7 +386,11 @@ export default function Navigation({ visible }: NavigationProps) {
               textAlign: "left",
             }}
           >
-            {resolved === "dark" ? "☀ Light" : "☾ Dark"}
+            {resolved === "light"
+              ? "☾ Dark"
+              : resolved === "blackout"
+              ? "◎ System"
+              : "● Blackout"}
           </button>
 
           {/* Mobile Accent Color Picker */}

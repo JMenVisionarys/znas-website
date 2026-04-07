@@ -61,11 +61,11 @@ export const ACCENT_COLORS: {
       bgPrimary: "#FAFAFA",
       bgElevated: "#FFFFFF",
       bgSurface: "#EEEEF0",
-      textSecondary: "#4A4A52",
-      textTertiary: "#7A7A85",
-      textGhost: "#C8C8D0",
-      border: "#E0E0E5",
-      borderHover: "#D0D0D8",
+      textSecondary: "#3A3A45",
+      textTertiary: "#5A5A68",
+      textGhost: "#A0A0AD",
+      border: "#D0D0D8",
+      borderHover: "#B8B8C4",
     },
   },
   {
@@ -94,11 +94,11 @@ export const ACCENT_COLORS: {
       bgPrimary: "#FDFBF7",
       bgElevated: "#FFFFFF",
       bgSurface: "#F0EBE2",
-      textSecondary: "#5A5040",
-      textTertiary: "#8A7D68",
-      textGhost: "#D8D0C0",
-      border: "#E8E0D0",
-      borderHover: "#D8CDB8",
+      textSecondary: "#48402E",
+      textTertiary: "#6A5D48",
+      textGhost: "#B0A890",
+      border: "#D8D0C0",
+      borderHover: "#C8BDA8",
     },
   },
   {
@@ -127,11 +127,11 @@ export const ACCENT_COLORS: {
       bgPrimary: "#F7FDFA",
       bgElevated: "#FFFFFF",
       bgSurface: "#E5F0EB",
-      textSecondary: "#3A5A4A",
-      textTertiary: "#688A78",
-      textGhost: "#C0D8CC",
-      border: "#D0E5DA",
-      borderHover: "#B8D5C5",
+      textSecondary: "#2A4A3A",
+      textTertiary: "#487058",
+      textGhost: "#98B8A5",
+      border: "#B8D5C5",
+      borderHover: "#A0C5B0",
     },
   },
   {
@@ -160,11 +160,11 @@ export const ACCENT_COLORS: {
       bgPrimary: "#FBFBFC",
       bgElevated: "#FFFFFF",
       bgSurface: "#EDEDF0",
-      textSecondary: "#4A4A55",
-      textTertiary: "#7A7A88",
-      textGhost: "#CCCCD2",
-      border: "#E2E2E8",
-      borderHover: "#D2D2DA",
+      textSecondary: "#3A3A48",
+      textTertiary: "#5A5A6A",
+      textGhost: "#A5A5B0",
+      border: "#D0D0DA",
+      borderHover: "#B8B8C5",
     },
   },
   {
@@ -193,11 +193,11 @@ export const ACCENT_COLORS: {
       bgPrimary: "#FDFAF7",
       bgElevated: "#FFFFFF",
       bgSurface: "#F2EBE5",
-      textSecondary: "#5A4838",
-      textTertiary: "#8A7060",
-      textGhost: "#D8CCC0",
-      border: "#EAE0D5",
-      borderHover: "#DAC8B8",
+      textSecondary: "#483828",
+      textTertiary: "#6A5040",
+      textGhost: "#B0A498",
+      border: "#DAD0C0",
+      borderHover: "#C8B8A5",
     },
   },
   {
@@ -226,11 +226,11 @@ export const ACCENT_COLORS: {
       bgPrimary: "#FDF7F8",
       bgElevated: "#FFFFFF",
       bgSurface: "#F2E8EA",
-      textSecondary: "#5A3840",
-      textTertiary: "#8A5868",
-      textGhost: "#D8C0C5",
-      border: "#EAD5D8",
-      borderHover: "#DAC0C5",
+      textSecondary: "#482830",
+      textTertiary: "#6A3848",
+      textGhost: "#B09098",
+      border: "#DAC0C5",
+      borderHover: "#C8A8B0",
     },
   },
   {
@@ -259,11 +259,11 @@ export const ACCENT_COLORS: {
       bgPrimary: "#FAF8FD",
       bgElevated: "#FFFFFF",
       bgSurface: "#EEEBF5",
-      textSecondary: "#4A4058",
-      textTertiary: "#7A6A90",
-      textGhost: "#CCC5D8",
-      border: "#E0D8EC",
-      borderHover: "#D0C5E0",
+      textSecondary: "#3A3048",
+      textTertiary: "#5A4A70",
+      textGhost: "#A498B0",
+      border: "#D0C5E0",
+      borderHover: "#B8A8D0",
     },
   },
   {
@@ -292,11 +292,11 @@ export const ACCENT_COLORS: {
       bgPrimary: "#F7FDFD",
       bgElevated: "#FFFFFF",
       bgSurface: "#E5F2F2",
-      textSecondary: "#38585A",
-      textTertiary: "#608888",
-      textGhost: "#C0D8D8",
-      border: "#D0E8E8",
-      borderHover: "#B8D8DA",
+      textSecondary: "#28484A",
+      textTertiary: "#406868",
+      textGhost: "#98B0B0",
+      border: "#B8D8DA",
+      borderHover: "#A0C5C8",
     },
   },
   {
@@ -325,11 +325,11 @@ export const ACCENT_COLORS: {
       bgPrimary: "#FEF7FA",
       bgElevated: "#FFFFFF",
       bgSurface: "#F5E8EE",
-      textSecondary: "#5A3848",
-      textTertiary: "#8A5870",
-      textGhost: "#D8C0CC",
-      border: "#ECD5DE",
-      borderHover: "#DEC0CC",
+      textSecondary: "#482838",
+      textTertiary: "#6A3850",
+      textGhost: "#B098A5",
+      border: "#DEC0CC",
+      borderHover: "#C8A8B5",
     },
   },
 ];
@@ -352,7 +352,7 @@ const ThemeContext = createContext<ThemeContextValue>({
   cycle: () => {},
 });
 
-const CYCLE: ThemeMode[] = ["system", "dark", "light"];
+const CYCLE: ThemeMode[] = ["system", "dark", "light", "blackout"];
 const STORAGE_KEY = "znas-theme";
 const ACCENT_KEY = "znas-accent";
 
@@ -370,6 +370,7 @@ function resolve(mode: ThemeMode): ResolvedTheme {
 
 function applyAccent(accentId: AccentColor, resolvedTheme: ResolvedTheme) {
   const config = ACCENT_COLORS.find((a) => a.id === accentId) ?? ACCENT_COLORS[0];
+  // Blackout uses dark palette accent colors but with pure void backgrounds
   const palette = resolvedTheme === "light" ? config.light : config.dark;
   const root = document.documentElement;
 
@@ -378,11 +379,19 @@ function applyAccent(accentId: AccentColor, resolvedTheme: ResolvedTheme) {
   root.style.setProperty("--color-accent-glow", palette.glow);
   root.style.setProperty("--color-accent-hover", palette.hover);
 
-  // Background colors
-  root.style.setProperty("--color-bg-void", palette.bgVoid);
-  root.style.setProperty("--color-bg-primary", palette.bgPrimary);
-  root.style.setProperty("--color-bg-elevated", palette.bgElevated);
-  root.style.setProperty("--color-bg-surface", palette.bgSurface);
+  if (resolvedTheme === "blackout") {
+    // Pure void backgrounds — no surface differentiation
+    root.style.setProperty("--color-bg-void", "#000000");
+    root.style.setProperty("--color-bg-primary", "#050505");
+    root.style.setProperty("--color-bg-elevated", "#0A0A0A");
+    root.style.setProperty("--color-bg-surface", "#111111");
+  } else {
+    // Background colors
+    root.style.setProperty("--color-bg-void", palette.bgVoid);
+    root.style.setProperty("--color-bg-primary", palette.bgPrimary);
+    root.style.setProperty("--color-bg-elevated", palette.bgElevated);
+    root.style.setProperty("--color-bg-surface", palette.bgSurface);
+  }
 
   // Text colors (secondary/tertiary — primary stays white/black)
   root.style.setProperty("--color-text-secondary", palette.textSecondary);

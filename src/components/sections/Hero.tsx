@@ -338,20 +338,22 @@ export default function Hero({ preloaderDone }: HeroProps) {
 
       {/* Hero content */}
       <div className="hero-content container relative pb-16 md:pb-24" style={{ zIndex: 5, willChange: "transform", opacity: 0 }}>
-        {/* Logo mark */}
-        <img
-          ref={logoRef}
-          src="/logo.png"
-          alt=""
-          className="logo-img logo-hero"
-        />
-        <span
-          ref={logoTextRef}
-          className="logo-lockup-text logo-lockup-text--hero"
-          style={{ opacity: 0 }}
-        >
-          {siteConfig.name} LLC
-        </span>
+        {/* Logo lockup */}
+        <div style={{ display: "flex", flexDirection: "column", alignItems: "center", width: "fit-content" }}>
+          <img
+            ref={logoRef}
+            src="/logo.png"
+            alt=""
+            className="logo-img logo-hero"
+          />
+          <span
+            ref={logoTextRef}
+            className="logo-lockup-text logo-lockup-text--hero"
+            style={{ opacity: 0 }}
+          >
+            {siteConfig.name} LLC
+          </span>
+        </div>
 
         {/* Tagline */}
         <div
