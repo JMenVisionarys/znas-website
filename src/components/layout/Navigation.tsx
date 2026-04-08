@@ -11,7 +11,7 @@ interface NavigationProps {
 
 export default function Navigation({ visible }: NavigationProps) {
   const navRef = useRef<HTMLElement>(null);
-  const [isScrolled, setIsScrolled] = useState(false);
+  const isScrolledRef = useRef(false);
   const [activeSection, setActiveSection] = useState("");
   const [mobileOpen, setMobileOpen] = useState(false);
   const mobileMenuRef = useRef<HTMLDivElement>(null);
@@ -49,7 +49,11 @@ export default function Navigation({ visible }: NavigationProps) {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > window.innerHeight * 0.8);
+      const shouldBeScrolled = window.scrollY > window.innerHeight * 0.8;
+      if (shouldBeScrolled !== isScrolledRef.current) {
+        isScrolledRef.current = shouldBeScrolled;
+        navRef.current?.classList.toggle("is-scrolled", shouldBeScrolled);
+      }
     };
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
@@ -99,7 +103,7 @@ export default function Navigation({ visible }: NavigationProps) {
     <>
       <nav
         ref={navRef}
-        className={`nav ${isScrolled ? "is-scrolled" : ""}`}
+        className="nav"
         style={{ opacity: visible ? 1 : 0 }}
       >
         <div className="container flex items-center justify-between">
@@ -166,7 +170,8 @@ export default function Navigation({ visible }: NavigationProps) {
                   backgroundColor: isAvailable ? "#34D399" : "#F87171",
                 }}
               />
-              {isAvailable ? "Available this week" : "Unavailable"}
+              {/* ALTERNATE COPY (pending Jose confirmation): "Available part-time — currently founding Visionarys.io" */}
+              {isAvailable ? "Available" : "Unavailable"}
             </button>
 
             {/* Status popup */}
@@ -229,7 +234,7 @@ export default function Navigation({ visible }: NavigationProps) {
                   }}
                 >
                   {isAvailable
-                    ? "Jose is accepting new consulting and architecture engagements this week."
+                    ? "Jose is accepting new consulting and architecture engagements."
                     : "Jose is currently focused on existing projects. Check back soon."}
                 </p>
               </div>
