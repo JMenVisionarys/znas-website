@@ -352,7 +352,7 @@ const ThemeContext = createContext<ThemeContextValue>({
   cycle: () => {},
 });
 
-const CYCLE: ThemeMode[] = ["dark", "light", "blackout"];
+const CYCLE: ThemeMode[] = ["dark", "light"];
 const STORAGE_KEY = "znas-theme";
 const ACCENT_KEY = "znas-accent";
 

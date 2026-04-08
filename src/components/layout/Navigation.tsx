@@ -243,8 +243,6 @@ export default function Navigation({ visible }: NavigationProps) {
               aria-label={
                 resolved === "dark"
                   ? "Switch to light mode"
-                  : resolved === "light"
-                  ? "Switch to blackout mode"
                   : "Switch to dark mode"
               }
               style={{
@@ -268,7 +266,7 @@ export default function Navigation({ visible }: NavigationProps) {
                 e.currentTarget.style.borderColor = "var(--color-border)";
               }}
             >
-              {resolved === "dark" ? "☀" : resolved === "light" ? "●" : "☾"}
+              {resolved === "dark" ? "☀" : "☾"}
             </button>
 
             {/* Accent Color Picker */}
@@ -386,11 +384,7 @@ export default function Navigation({ visible }: NavigationProps) {
               textAlign: "left",
             }}
           >
-            {resolved === "dark"
-              ? "☀ Light"
-              : resolved === "light"
-              ? "● Blackout"
-              : "☾ Dark"}
+            {resolved === "dark" ? "☀ Light" : "☾ Dark"}
           </button>
 
           {/* Mobile Accent Color Picker */}
