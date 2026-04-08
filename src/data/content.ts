@@ -102,7 +102,7 @@ export const journeyContent = {
       role: "Applications Developer",
       company: "Amadeus IT Group",
       description:
-        "Lead developer on the mobile project at one of the world's largest airline technology companies. Designed and maintained WCF services and .NET applications serving the global travel industry.",
+        "Engineered PNR monitoring and flight data systems for major airlines and U.S. government agencies at one of the world's largest travel technology companies. Operated under elevated security clearance, processing global flight data at scale across distributed .NET infrastructure.",
     },
     {
       year: "2013 — 2025",
