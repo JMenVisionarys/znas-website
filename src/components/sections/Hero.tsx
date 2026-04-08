@@ -138,18 +138,9 @@ export default function Hero({ preloaderDone }: HeroProps) {
         stagger: 0.8,
         delay: tl.duration() + 0.5,
       });
-    }, sectionRef);
 
-    return () => ctx.revert();
-  }, [preloaderDone]);
-
-  // Parallax exit on scroll — only after entry animation completes
-  const parallaxCtxRef = useRef<ReturnType<typeof gsap.context> | null>(null);
-  useEffect(() => {
-    if (!preloaderDone || !sectionRef.current) return;
-
-    const timer = setTimeout(() => {
-      parallaxCtxRef.current = gsap.context(() => {
+      // 7. Register parallax exit on scroll after entry completes
+      tl.call(() => {
         gsap.to(".hero-content", {
           y: -80,
           opacity: 0,
@@ -173,13 +164,10 @@ export default function Hero({ preloaderDone }: HeroProps) {
             scrub: true,
           },
         });
-      }, sectionRef);
-    }, 3000);
+      });
+    }, sectionRef);
 
-    return () => {
-      clearTimeout(timer);
-      parallaxCtxRef.current?.revert();
-    };
+    return () => ctx.revert();
   }, [preloaderDone]);
 
   // Floating glow
@@ -225,6 +213,25 @@ export default function Hero({ preloaderDone }: HeroProps) {
 
       {/* Architecture diagram wrapper for parallax */}
       <div className="hero-diagram absolute inset-0" style={{ willChange: "transform", opacity: 0 }}>
+      {/* Night owl watermark behind architecture diagram */}
+      <div
+        className="hero-owl-watermark"
+        style={{
+          position: "absolute",
+          top: "50%",
+          left: "50%",
+          transform: "translate(-50%, -50%)",
+          width: "clamp(300px, 40vw, 600px)",
+          height: "clamp(300px, 40vw, 600px)",
+          backgroundImage: "url(/logo.png)",
+          backgroundSize: "contain",
+          backgroundRepeat: "no-repeat",
+          backgroundPosition: "center",
+          opacity: 0.06,
+          pointerEvents: "none",
+          zIndex: 0,
+        }}
+      />
       <svg
         className="absolute inset-0 w-full h-full pointer-events-none"
         style={{ zIndex: 1 }}
