@@ -102,7 +102,7 @@ export const journeyContent = {
       role: "Applications Developer",
       company: "Amadeus IT Group",
       description:
-        "Engineered PNR monitoring and flight data systems for major airlines and U.S. government agencies at one of the world's largest travel technology companies. Operated under elevated security clearance, processing global flight data at scale across distributed .NET infrastructure.",
+        "Built enterprise applications within the global airline distribution and passenger data ecosystem at a leading GDS provider. Worked across high-compliance environments supporting both commercial aviation and regulated government data requirements, delivering production systems on distributed .NET platforms.",
     },
     {
       year: "2013 — 2025",
