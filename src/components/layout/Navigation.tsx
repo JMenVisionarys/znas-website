@@ -314,34 +314,53 @@ export default function Navigation({ visible }: NavigationProps) {
             ))}
           </div>
 
-          {/* Hamburger */}
+          {/* Hamburger / Close X */}
           <button
-            className="md:hidden flex flex-col gap-1.5 p-2"
+            className="md:hidden flex flex-col items-center justify-center"
             onClick={() => setMobileOpen(!mobileOpen)}
             aria-label="Toggle menu"
             aria-expanded={mobileOpen}
+            style={{
+              width: "44px",
+              height: "44px",
+              padding: "10px",
+              position: "relative",
+              zIndex: mobileOpen ? 10001 : "auto",
+              cursor: "none",
+            }}
           >
             <span
-              className="block w-5 h-px transition-transform duration-300"
+              className="block transition-all duration-300"
               style={{
+                width: "20px",
+                height: "1.5px",
                 backgroundColor: "var(--color-text-primary)",
-                transform: mobileOpen ? "rotate(45deg) translateY(4px)" : "",
+                position: "absolute",
+                transform: mobileOpen
+                  ? "rotate(45deg)"
+                  : "translateY(-4px)",
               }}
             />
             <span
-              className="block w-5 h-px transition-opacity duration-300"
+              className="block transition-all duration-300"
               style={{
+                width: "20px",
+                height: "1.5px",
                 backgroundColor: "var(--color-text-primary)",
+                position: "absolute",
                 opacity: mobileOpen ? 0 : 1,
               }}
             />
             <span
-              className="block w-5 h-px transition-transform duration-300"
+              className="block transition-all duration-300"
               style={{
+                width: "20px",
+                height: "1.5px",
                 backgroundColor: "var(--color-text-primary)",
+                position: "absolute",
                 transform: mobileOpen
-                  ? "rotate(-45deg) translateY(-4px)"
-                  : "",
+                  ? "rotate(-45deg)"
+                  : "translateY(4px)",
               }}
             />
           </button>
