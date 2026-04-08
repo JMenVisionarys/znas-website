@@ -457,16 +457,26 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   }, [resolved]);
 
   const cycle = useCallback(() => {
-    setModeState((prev) => {
-      const idx = CYCLE.indexOf(prev);
-      const next = CYCLE[(idx + 1) % CYCLE.length];
-      localStorage.setItem(STORAGE_KEY, next);
-      const r = resolve(next);
-      setResolved(r);
-      document.documentElement.setAttribute("data-theme", r);
-      applyAccent(accent, r);
-      return next;
-    });
+    const doSwitch = () => {
+      setModeState((prev) => {
+        const idx = CYCLE.indexOf(prev);
+        const next = CYCLE[(idx + 1) % CYCLE.length];
+        localStorage.setItem(STORAGE_KEY, next);
+        const r = resolve(next);
+        setResolved(r);
+        document.documentElement.setAttribute("data-theme", r);
+        applyAccent(accent, r);
+        return next;
+      });
+    };
+
+    // Use View Transitions API for smooth diagonal sweep
+    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (!prefersReduced && document.startViewTransition) {
+      document.startViewTransition(doSwitch);
+    } else {
+      doSwitch();
+    }
   }, [accent]);
 
   return (

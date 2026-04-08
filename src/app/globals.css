@@ -123,6 +123,38 @@
   mix-blend-mode: screen;
 }
 
+/* ── Theme Transition (View Transitions API) ── */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+::view-transition-old(root) {
+  z-index: 1;
+}
+
+::view-transition-new(root) {
+  z-index: 9999;
+  animation: theme-sweep 0.7s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes theme-sweep {
+  from {
+    clip-path: polygon(-15% -15%, -15% -15%, -30% 100%, -30% 100%);
+  }
+  to {
+    clip-path: polygon(-15% -15%, 115% -15%, 100% 115%, -30% 115%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation: none !important;
+  }
+}
+
 /* ── Base Styles ── */
 *,
 *::before,
