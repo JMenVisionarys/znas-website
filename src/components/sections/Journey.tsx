@@ -1,8 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { gsap } from "@/lib/gsap-config";
-import { ScrollTrigger } from "@/lib/gsap-config";
+import { gsap, ScrollTrigger } from "@/lib/gsap-config";
 import { journeyContent } from "@/data/content";
 import SectionLabel from "@/components/ui/SectionLabel";
 
@@ -118,8 +117,6 @@ export default function Journey() {
           <div className="flex flex-col gap-24 md:gap-32 py-12">
             {milestones.map((m, i) => {
               const isLeft = i % 2 === 0;
-              const topOffset = `${(i / (milestones.length - 1)) * 100}%`;
-
               return (
                 <div key={i} className="relative">
                   {/* Node */}

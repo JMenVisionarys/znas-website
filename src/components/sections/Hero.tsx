@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { gsap, SplitText, DrawSVGPlugin } from "@/lib/gsap-config";
+import { gsap, SplitText } from "@/lib/gsap-config";
 import { heroContent, siteConfig } from "@/data/content";
 
 // Architecture diagram nodes — positioned as % of viewport
@@ -56,8 +56,7 @@ export default function Hero({ preloaderDone }: HeroProps) {
 
     const ctx = gsap.context(() => {
       // SplitText setup
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const splits: any[] = [];
+      const splits: InstanceType<typeof SplitText>[] = [];
       [line1Ref, line2Ref].forEach((ref) => {
         if (!ref.current) return;
         const split = SplitText.create(ref.current, {
@@ -186,7 +185,7 @@ export default function Hero({ preloaderDone }: HeroProps) {
   // Floating glow
   useEffect(() => {
     if (!glowRef.current) return;
-    gsap.to(glowRef.current, {
+    const tween = gsap.to(glowRef.current, {
       x: "random(-80, 80)",
       y: "random(-60, 60)",
       duration: 20,
@@ -194,6 +193,7 @@ export default function Hero({ preloaderDone }: HeroProps) {
       yoyo: true,
       ease: "sine.inOut",
     });
+    return () => { tween.kill(); };
   }, []);
 
   const getNode = (id: string) => NODES.find((n) => n.id === id)!;

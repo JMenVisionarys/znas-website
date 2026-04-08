@@ -103,26 +103,6 @@
   --color-border-hover: #B8B8C4;
 }
 
-/* ── Blackout Theme Overrides ── */
-[data-theme="blackout"] {
-  --color-bg-void: #000000;
-  --color-bg-primary: #050505;
-  --color-bg-elevated: #0A0A0A;
-  --color-bg-surface: #111111;
-
-  --color-text-primary: #F0F0F3;
-  --color-text-secondary: #9CA3B4;
-  --color-text-tertiary: #5A6278;
-  --color-text-ghost: #1A1A1A;
-
-  --color-border: #161616;
-  --color-border-hover: #222222;
-}
-
-[data-theme="blackout"] .logo-img {
-  mix-blend-mode: screen;
-}
-
 /* ── Theme Transition (View Transitions API) ── */
 ::view-transition-old(root),
 ::view-transition-new(root) {

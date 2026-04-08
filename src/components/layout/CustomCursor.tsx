@@ -9,8 +9,9 @@ function AnnotationHint() {
     if (!hintRef.current) return;
     const hasFine = window.matchMedia("(pointer: fine)").matches;
     if (!hasFine) return;
-    gsap.to(hintRef.current, { opacity: 1, duration: 0.8, delay: 4, ease: "power2.out" });
-    gsap.to(hintRef.current, { opacity: 0, duration: 0.5, delay: 7, ease: "power2.in" });
+    const t1 = gsap.to(hintRef.current, { opacity: 1, duration: 0.8, delay: 4, ease: "power2.out" });
+    const t2 = gsap.to(hintRef.current, { opacity: 0, duration: 0.5, delay: 7, ease: "power2.in" });
+    return () => { t1.kill(); t2.kill(); };
   }, []);
   return (
     <div

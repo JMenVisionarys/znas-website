@@ -1,8 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { gsap, DrawSVGPlugin } from "@/lib/gsap-config";
-import { ScrollTrigger } from "@/lib/gsap-config";
+import { gsap, ScrollTrigger } from "@/lib/gsap-config";
 import { expertiseContent } from "@/data/content";
 import SectionLabel from "@/components/ui/SectionLabel";
 
@@ -34,28 +33,10 @@ const STACK_LAYERS = [
   },
 ];
 
-// Vertical connections between layers (fromLayerIdx, fromNodeIdx, toLayerIdx, toNodeIdx)
-const CROSS_CONNECTIONS: [number, number, number, number][] = [
-  [0, 1, 1, 0], // Microservices → Go
-  [0, 1, 1, 1], // Microservices → .NET
-  [0, 2, 1, 0], // Public APIs → Go
-  [0, 3, 1, 0], // AsyncAPI → Go
-  [1, 0, 2, 0], // Go → Docker
-  [1, 1, 2, 3], // .NET → PostgreSQL
-  [1, 2, 3, 0], // Python → ML
-  [1, 2, 3, 1], // Python → LLMs
-  [2, 0, 2, 1], // Docker → Kubernetes
-  [2, 3, 2, 4], // PostgreSQL → Redis
-  [3, 0, 3, 1], // ML → LLMs
-  [3, 1, 3, 2], // LLMs → AI Architecture
-];
-
 export default function Expertise() {
   const sectionRef = useRef<HTMLElement>(null);
   const diagramRef = useRef<HTMLDivElement>(null);
-  const svgRef = useRef<SVGSVGElement>(null);
   const [hoveredNode, setHoveredNode] = useState<string | null>(null);
-  const nodeRefs = useRef<Map<string, HTMLDivElement>>(new Map());
 
   useEffect(() => {
     if (!sectionRef.current) return;
@@ -126,15 +107,6 @@ export default function Expertise() {
 
         {/* Stack architecture diagram */}
         <div ref={diagramRef} className="relative mt-12 mb-20">
-          {/* Connection lines SVG overlay */}
-          <svg
-            ref={svgRef}
-            className="absolute inset-0 w-full h-full pointer-events-none"
-            style={{ zIndex: 0 }}
-          >
-            {/* Vertical cross-connections drawn as lines between layer rows */}
-          </svg>
-
           {/* Layer rows */}
           <div className="flex flex-col gap-8">
             {STACK_LAYERS.map((layer, layerIdx) => (
@@ -173,9 +145,6 @@ export default function Expertise() {
                     return (
                       <div
                         key={tech}
-                        ref={(el) => {
-                          if (el) nodeRefs.current.set(key, el);
-                        }}
                         className="stack-node flex items-center gap-2"
                         style={{ cursor: "none" }}
                         onMouseEnter={() => setHoveredNode(key)}

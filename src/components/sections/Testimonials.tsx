@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { gsap } from "@/lib/gsap-config";
+import { gsap, ScrollTrigger } from "@/lib/gsap-config";
 import { testimonialsContent } from "@/data/content";
 import SectionLabel from "@/components/ui/SectionLabel";
 
@@ -13,28 +13,32 @@ export default function Testimonials() {
 
   useEffect(() => {
     if (!sectionRef.current) return;
-    gsap.from(sectionRef.current.querySelectorAll(".reveal-up"), {
-      y: 60,
-      opacity: 0,
-      duration: 1,
-      ease: "power3.out",
-      stagger: 0.1,
-      scrollTrigger: {
-        trigger: sectionRef.current,
-        start: "top 70%",
-        toggleActions: "play none none none",
-      },
-    });
+    const ctx = gsap.context(() => {
+      gsap.from(".reveal-up", {
+        y: 60,
+        opacity: 0,
+        duration: 1,
+        ease: "power3.out",
+        stagger: 0.1,
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 70%",
+          toggleActions: "play none none none",
+        },
+      });
+    }, sectionRef);
+    return () => ctx.revert();
   }, []);
 
   useEffect(() => {
     if (!quoteRef.current) return;
-    gsap.from(quoteRef.current, {
+    const tween = gsap.from(quoteRef.current, {
       opacity: 0,
       y: 20,
       duration: 0.5,
       ease: "power3.out",
     });
+    return () => { tween.kill(); };
   }, [activeIndex]);
 
   const prev = () =>

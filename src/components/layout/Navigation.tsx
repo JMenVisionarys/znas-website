@@ -1,8 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { gsap } from "@/lib/gsap-config";
-import { ScrollTrigger } from "@/lib/gsap-config";
+import { gsap, ScrollTrigger } from "@/lib/gsap-config";
 import { navLinks, siteConfig } from "@/data/content";
 import { useTheme, ACCENT_COLORS } from "@/hooks/useTheme";
 
@@ -38,13 +37,14 @@ export default function Navigation({ visible }: NavigationProps) {
 
   useEffect(() => {
     if (!visible) return;
-    gsap.from(navRef.current, {
+    const tween = gsap.from(navRef.current, {
       opacity: 0,
       y: -20,
       duration: 0.8,
       ease: "power3.out",
       delay: 0.2,
     });
+    return () => { tween.kill(); };
   }, [visible]);
 
   useEffect(() => {
@@ -78,13 +78,14 @@ export default function Navigation({ visible }: NavigationProps) {
 
   useEffect(() => {
     if (mobileOpen && mobileMenuRef.current) {
-      gsap.from(mobileLinksRef.current, {
+      const tween = gsap.from(mobileLinksRef.current, {
         y: 40,
         opacity: 0,
         duration: 0.5,
         stagger: 0.08,
         ease: "power3.out",
       });
+      return () => { tween.kill(); };
     }
   }, [mobileOpen]);
 

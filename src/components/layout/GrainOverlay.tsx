@@ -10,7 +10,7 @@ export default function GrainOverlay() {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     if (!ref.current) return;
 
-    gsap.to(ref.current, {
+    const tween = gsap.to(ref.current, {
       x: "random(-100, 100)",
       y: "random(-100, 100)",
       duration: 8,
@@ -18,6 +18,7 @@ export default function GrainOverlay() {
       yoyo: true,
       ease: "none",
     });
+    return () => { tween.kill(); };
   }, []);
 
   return (

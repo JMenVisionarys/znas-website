@@ -7,9 +7,4 @@ import { DrawSVGPlugin } from "gsap/DrawSVGPlugin";
 
 gsap.registerPlugin(ScrollTrigger, SplitText, DrawSVGPlugin);
 
-// Dev-only: force tick for headless preview environments where rAF is throttled
-if (typeof window !== "undefined" && process.env.NODE_ENV === "development") {
-  setInterval(() => gsap.ticker.tick(), 1000 / 30);
-}
-
 export { gsap, ScrollTrigger, SplitText, DrawSVGPlugin };

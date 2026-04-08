@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { gsap } from "@/lib/gsap-config";
+import { gsap, ScrollTrigger } from "@/lib/gsap-config";
 import { contactContent, siteConfig } from "@/data/content";
 import SectionLabel from "@/components/ui/SectionLabel";
 
@@ -10,18 +10,21 @@ export default function Contact() {
 
   useEffect(() => {
     if (!sectionRef.current) return;
-    gsap.from(sectionRef.current.querySelectorAll(".reveal-up"), {
-      y: 60,
-      opacity: 0,
-      duration: 1,
-      ease: "power3.out",
-      stagger: 0.12,
-      scrollTrigger: {
-        trigger: sectionRef.current,
-        start: "top 70%",
-        toggleActions: "play none none none",
-      },
-    });
+    const ctx = gsap.context(() => {
+      gsap.from(".reveal-up", {
+        y: 60,
+        opacity: 0,
+        duration: 1,
+        ease: "power3.out",
+        stagger: 0.12,
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 70%",
+          toggleActions: "play none none none",
+        },
+      });
+    }, sectionRef);
+    return () => ctx.revert();
   }, []);
 
   return (

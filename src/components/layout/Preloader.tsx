@@ -25,11 +25,6 @@ export default function Preloader({ onComplete }: PreloaderProps) {
       return;
     }
 
-    // Fallback: force-complete if rAF is throttled (background tabs, headless)
-    const fallback = setTimeout(() => {
-      tl.progress(1, false);
-    }, 2200);
-
     const tl = gsap.timeline({
       onComplete: () => {
         clearTimeout(fallback);
@@ -39,6 +34,11 @@ export default function Preloader({ onComplete }: PreloaderProps) {
         onComplete();
       },
     });
+
+    // Fallback: force-complete if rAF is throttled (background tabs, headless)
+    const fallback = setTimeout(() => {
+      tl.progress(1, false);
+    }, 2200);
 
     const counter = { value: 0 };
 
@@ -102,6 +102,11 @@ export default function Preloader({ onComplete }: PreloaderProps) {
         },
         "<"
       );
+
+    return () => {
+      clearTimeout(fallback);
+      tl.kill();
+    };
   }, [onComplete]);
 
   if (prefersReduced) return null;

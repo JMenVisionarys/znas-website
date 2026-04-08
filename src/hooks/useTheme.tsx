@@ -8,8 +8,8 @@ import {
   useState,
 } from "react";
 
-export type ThemeMode = "system" | "light" | "dark" | "blackout";
-type ResolvedTheme = "light" | "dark" | "blackout";
+export type ThemeMode = "light" | "dark";
+type ResolvedTheme = "light" | "dark";
 
 export type AccentColor = "blue" | "gold" | "emerald" | "silver" | "copper" | "crimson" | "violet" | "cyan" | "rose";
 
@@ -344,8 +344,8 @@ interface ThemeContextValue {
 }
 
 const ThemeContext = createContext<ThemeContextValue>({
-  mode: "system",
-  resolved: "light",
+  mode: "dark",
+  resolved: "dark",
   accent: "blue",
   setMode: () => {},
   setAccent: () => {},
@@ -356,21 +356,12 @@ const CYCLE: ThemeMode[] = ["dark", "light"];
 const STORAGE_KEY = "znas-theme";
 const ACCENT_KEY = "znas-accent";
 
-function getSystemPreference(): "light" | "dark" {
-  if (typeof window === "undefined") return "light";
-  return window.matchMedia("(prefers-color-scheme: dark)").matches
-    ? "dark"
-    : "light";
-}
-
 function resolve(mode: ThemeMode): ResolvedTheme {
-  if (mode === "system") return getSystemPreference();
   return mode;
 }
 
 function applyAccent(accentId: AccentColor, resolvedTheme: ResolvedTheme) {
   const config = ACCENT_COLORS.find((a) => a.id === accentId) ?? ACCENT_COLORS[0];
-  // Blackout uses dark palette accent colors but with pure void backgrounds
   const palette = resolvedTheme === "light" ? config.light : config.dark;
   const root = document.documentElement;
 
@@ -379,19 +370,11 @@ function applyAccent(accentId: AccentColor, resolvedTheme: ResolvedTheme) {
   root.style.setProperty("--color-accent-glow", palette.glow);
   root.style.setProperty("--color-accent-hover", palette.hover);
 
-  if (resolvedTheme === "blackout") {
-    // Pure void backgrounds — no surface differentiation
-    root.style.setProperty("--color-bg-void", "#000000");
-    root.style.setProperty("--color-bg-primary", "#050505");
-    root.style.setProperty("--color-bg-elevated", "#0A0A0A");
-    root.style.setProperty("--color-bg-surface", "#111111");
-  } else {
-    // Background colors
-    root.style.setProperty("--color-bg-void", palette.bgVoid);
-    root.style.setProperty("--color-bg-primary", palette.bgPrimary);
-    root.style.setProperty("--color-bg-elevated", palette.bgElevated);
-    root.style.setProperty("--color-bg-surface", palette.bgSurface);
-  }
+  // Background colors
+  root.style.setProperty("--color-bg-void", palette.bgVoid);
+  root.style.setProperty("--color-bg-primary", palette.bgPrimary);
+  root.style.setProperty("--color-bg-elevated", palette.bgElevated);
+  root.style.setProperty("--color-bg-surface", palette.bgSurface);
 
   // Text colors (secondary/tertiary — primary stays white/black)
   root.style.setProperty("--color-text-secondary", palette.textSecondary);
@@ -404,8 +387,8 @@ function applyAccent(accentId: AccentColor, resolvedTheme: ResolvedTheme) {
 }
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [mode, setModeState] = useState<ThemeMode>("system");
-  const [resolved, setResolved] = useState<ResolvedTheme>("light");
+  const [mode, setModeState] = useState<ThemeMode>("dark");
+  const [resolved, setResolved] = useState<ResolvedTheme>("dark");
   const [accent, setAccentState] = useState<AccentColor>("blue");
 
   // Hydrate from localStorage
@@ -425,21 +408,6 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     document.documentElement.setAttribute("data-theme", r);
     applyAccent(a, r);
   }, []);
-
-  // Listen for OS preference changes when in system mode
-  useEffect(() => {
-    const mq = window.matchMedia("(prefers-color-scheme: dark)");
-    const handler = () => {
-      if (mode === "system") {
-        const r = resolve("system");
-        setResolved(r);
-        document.documentElement.setAttribute("data-theme", r);
-        applyAccent(accent, r);
-      }
-    };
-    mq.addEventListener("change", handler);
-    return () => mq.removeEventListener("change", handler);
-  }, [mode, accent]);
 
   const setMode = useCallback((m: ThemeMode) => {
     setModeState(m);
