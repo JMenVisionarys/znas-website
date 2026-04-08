@@ -650,6 +650,16 @@ body {
   gap: 2rem;
 }
 
+/* ── Mobile Audit Fixes (375px / 390px) ── */
+@media (max-width: 390px) {
+  .blueprint-card {
+    padding: 1.25rem;
+  }
+  .stat-cell {
+    padding: 1rem 1rem !important;
+  }
+}
+
 /* ── Reduced Motion ── */
 @media (prefers-reduced-motion: reduce) {
   *,

@@ -253,13 +253,18 @@ export default function Navigation({ visible }: NavigationProps) {
               }
               style={{
                 fontFamily: "var(--font-mono)",
-                fontSize: "0.7rem",
+                fontSize: "1rem",
                 letterSpacing: "0.1em",
                 color: "var(--color-text-tertiary)",
                 background: "none",
                 border: "1px solid var(--color-border)",
                 borderRadius: "4px",
-                padding: "0.25rem 0.5rem",
+                padding: "0.5rem 0.65rem",
+                minWidth: "36px",
+                minHeight: "36px",
+                display: "inline-flex",
+                alignItems: "center",
+                justifyContent: "center",
                 transition: "color 0.3s, border-color 0.3s",
                 cursor: "none",
               }}
